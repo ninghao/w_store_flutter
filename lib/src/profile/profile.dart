@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w_store_flutter/src/login/login.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -9,10 +10,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-        elevation: 0.0,
-      ),
+      body: Login(),
     );
   }
 }
