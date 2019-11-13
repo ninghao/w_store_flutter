@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w_store_flutter/src/login/widgets/login_form.dart';
 import 'package:w_store_flutter/src/widgets/app_logo.dart';
 
 class Login extends StatefulWidget {
@@ -16,6 +17,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: <Widget>[
               AppLogo(),
+              LoginForm(),
             ],
           ),
         ),
