@@ -7,9 +7,19 @@ class AppBottomNavigationBar extends StatefulWidget {
 }
 
 class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
+  int _currentIndex = 0;
+
+  void _onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      currentIndex: _currentIndex,
+      onTap: _onTap,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       items: <BottomNavigationBarItem>[
