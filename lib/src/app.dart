@@ -12,6 +12,10 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'w.store',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.black,
+        accentColor: Colors.black87,
+      ),
       home: Scaffold(
         body: Home(),
       ),
