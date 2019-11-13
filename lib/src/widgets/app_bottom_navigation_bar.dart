@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:w_store_flutter/src/providers/current_page.dart';
 
-class AppBottomNavigationBar extends StatefulWidget {
-  @override
-  _AppBottomNavigationBarState createState() => _AppBottomNavigationBarState();
-}
-
-class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
-  int _currentIndex = 0;
-
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
+class AppBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final currentPage = Provider.of<CurrentPage>(context);
+
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      onTap: _onTap,
+      currentIndex: currentPage.index,
+      onTap: (value) => currentPage.index = value,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       items: <BottomNavigationBarItem>[

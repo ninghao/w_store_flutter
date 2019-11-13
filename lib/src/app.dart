@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:w_store_flutter/src/add/add.dart';
 import 'package:w_store_flutter/src/home/home.dart';
 import 'package:w_store_flutter/src/profile/profile.dart';
+import 'package:w_store_flutter/src/providers/current_page.dart';
 import 'package:w_store_flutter/src/widgets/app_bottom_navigation_bar.dart';
 
 class App extends StatefulWidget {
@@ -31,16 +33,21 @@ class _AppState extends State<App> {
           ),
         ),
       ),
-      home: Scaffold(
-        body: IndexedStack(
-          index: 2,
-          children: <Widget>[
-            Home(),
-            Add(),
-            Profile(),
-          ],
+      home: ChangeNotifierProvider<CurrentPage>(
+        builder: (context) => CurrentPage(),
+        child: Scaffold(
+          body: Consumer<CurrentPage>(
+            builder: (context, currentPage, child) => IndexedStack(
+              index: currentPage.index,
+              children: <Widget>[
+                Home(),
+                Add(),
+                Profile(),
+              ],
+            ),
+          ),
+          bottomNavigationBar: AppBottomNavigationBar(),
         ),
-        bottomNavigationBar: AppBottomNavigationBar(),
       ),
     );
   }
