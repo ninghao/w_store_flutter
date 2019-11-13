@@ -15,6 +15,18 @@ class _AppState extends State<App> {
       theme: ThemeData(
         primaryColor: Colors.black,
         accentColor: Colors.black87,
+        appBarTheme: AppBarTheme(
+          elevation: 0.0,
+          color: Colors.white,
+          brightness: Brightness.light,
+          textTheme: TextTheme(
+            title: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ),
       home: Scaffold(
         body: Home(),
