@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:w_store_flutter/src/home/home.dart';
+import 'package:w_store_flutter/src/widgets/app_bottom_navigation_bar.dart';
 
 class App extends StatefulWidget {
   @override
@@ -30,6 +31,7 @@ class _AppState extends State<App> {
       ),
       home: Scaffold(
         body: Home(),
+        bottomNavigationBar: AppBottomNavigationBar(),
       ),
     );
   }
