@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.account_circle,
+            OMIcons.accountCircle,
             size: 32,
           ),
           title: Text('帐户'),
