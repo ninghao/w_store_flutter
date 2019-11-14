@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w_store_flutter/src/login/models/login_model.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -6,9 +7,19 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  LoginModel _formData = LoginModel();
+
+  void _submitForm() {
+    _formKey.currentState.save();
+    print('Name: ${_formData.name}');
+    print('Password: ${_formData.password}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: <Widget>[
           TextFormField(
@@ -17,6 +28,9 @@ class _LoginFormState extends State<LoginForm> {
               hintText: '输入登录用户名',
               helperText: '',
             ),
+            onSaved: (String value) {
+              _formData.name = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -25,6 +39,9 @@ class _LoginFormState extends State<LoginForm> {
               helperText: '',
             ),
             obscureText: true,
+            onSaved: (String value) {
+              _formData.password = value;
+            },
           ),
           Container(
             padding: EdgeInsets.only(
@@ -39,7 +56,7 @@ class _LoginFormState extends State<LoginForm> {
                   fontSize: 18.0,
                 ),
               ),
-              onPressed: () {},
+              onPressed: _submitForm,
               color: Theme.of(context).primaryColor,
               splashColor: Colors.white12,
               padding: EdgeInsets.all(16.0),
