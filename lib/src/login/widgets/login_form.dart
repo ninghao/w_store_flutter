@@ -9,11 +9,34 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   LoginModel _formData = LoginModel();
+  bool _autovalidate = false;
 
   void _submitForm() {
-    _formKey.currentState.save();
-    print('Name: ${_formData.name}');
-    print('Password: ${_formData.password}');
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      print('Name: ${_formData.name}');
+      print('Password: ${_formData.password}');
+    } else {
+      setState(() {
+        _autovalidate = true;
+      });
+    }
+  }
+
+  String _validateName(String value) {
+    if (value.isEmpty) {
+      return '请输入用户名。';
+    }
+
+    return null;
+  }
+
+  String _validatePassword(String value) {
+    if (value.isEmpty) {
+      return '请输入密码。';
+    }
+
+    return null;
   }
 
   @override
@@ -31,6 +54,8 @@ class _LoginFormState extends State<LoginForm> {
             onSaved: (String value) {
               _formData.name = value;
             },
+            autovalidate: _autovalidate,
+            validator: _validateName,
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -42,6 +67,8 @@ class _LoginFormState extends State<LoginForm> {
             onSaved: (String value) {
               _formData.password = value;
             },
+            autovalidate: _autovalidate,
+            validator: _validatePassword,
           ),
           Container(
             padding: EdgeInsets.only(
