@@ -28,7 +28,9 @@ class _SignupState extends State<Signup> {
             padding: EdgeInsets.all(40.0),
             child: Column(
               children: <Widget>[
-                AppLogo(),
+                AppLogo(
+                  type: LogoType.light,
+                ),
                 SignupForm(),
               ],
             ),

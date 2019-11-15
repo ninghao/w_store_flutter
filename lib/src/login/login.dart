@@ -16,7 +16,9 @@ class _LoginState extends State<Login> {
           padding: EdgeInsets.all(40.0),
           child: Column(
             children: <Widget>[
-              AppLogo(),
+              AppLogo(
+                type: LogoType.dark,
+              ),
               LoginForm(),
             ],
           ),
