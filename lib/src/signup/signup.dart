@@ -11,14 +11,27 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(40.0),
-          child: Column(
-            children: <Widget>[
-              AppLogo(),
-              SignupForm(),
-            ],
+      body: Container(
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background_1.jpg'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black26,
+              BlendMode.hardLight,
+            ),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(40.0),
+            child: Column(
+              children: <Widget>[
+                AppLogo(),
+                SignupForm(),
+              ],
+            ),
           ),
         ),
       ),
