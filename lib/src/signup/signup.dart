@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:w_store_flutter/src/signup/widgets/signup_form.dart';
 import 'package:w_store_flutter/src/widgets/app_logo.dart';
 
@@ -10,6 +11,8 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
     return Scaffold(
       body: Container(
         height: double.infinity,
