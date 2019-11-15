@@ -50,6 +50,24 @@ class _SignupFormState extends State<SignupForm> {
               labelText: '用户名',
               hintText: '输入注册用户名',
               helperText: '',
+              labelStyle: TextStyle(
+                color: Colors.white,
+              ),
+              hintStyle: TextStyle(
+                color: Colors.white38,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.white70,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.white,
+                ),
+              ),
             ),
             onSaved: (String value) {
               _formData.name = value;
@@ -62,6 +80,24 @@ class _SignupFormState extends State<SignupForm> {
               labelText: '密码',
               hintText: '输入注册用户密码',
               helperText: '',
+              labelStyle: TextStyle(
+                color: Colors.white,
+              ),
+              hintStyle: TextStyle(
+                color: Colors.white38,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.white70,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Colors.white,
+                ),
+              ),
             ),
             obscureText: true,
             onSaved: (String value) {
@@ -79,13 +115,13 @@ class _SignupFormState extends State<SignupForm> {
               child: Text(
                 '注册新用户',
                 style: TextStyle(
-                  color: Colors.white70,
+                  color: Colors.black,
                   fontSize: 18.0,
                 ),
               ),
               onPressed: _submitForm,
-              color: Theme.of(context).primaryColor,
-              splashColor: Colors.white12,
+              color: Colors.white,
+              splashColor: Colors.black12,
               padding: EdgeInsets.all(16.0),
               elevation: 0.0,
             ),
@@ -96,7 +132,7 @@ class _SignupFormState extends State<SignupForm> {
               child: Text(
                 '已有帐号，点击登录 →',
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: Colors.white70,
                 ),
               ),
               onPressed: () {},
