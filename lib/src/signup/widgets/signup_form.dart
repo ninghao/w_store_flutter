@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:w_store_flutter/src/signup/models/signup_model.dart';
 
 class SignupForm extends StatefulWidget {
@@ -11,11 +12,23 @@ class _SignupFormState extends State<SignupForm> {
   SignupModel _formData = SignupModel();
   bool _autovalidate = false;
 
+  signup() async {
+    final response = await http.post('http://192.168.31.127:3000/users', body: {
+      'name': _formData.name,
+      'password': _formData.password,
+    });
+
+    print(response.body);
+    print(response.statusCode);
+  }
+
   void _submitForm() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
+
+      signup();
     } else {
       setState(() {
         _autovalidate = true;
