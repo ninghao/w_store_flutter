@@ -46,6 +46,9 @@ class _SignupFormState extends State<SignupForm> {
       child: Column(
         children: <Widget>[
           TextFormField(
+            style: TextStyle(
+              color: Colors.white,
+            ),
             decoration: InputDecoration(
               labelText: '用户名',
               hintText: '输入注册用户名',
@@ -76,6 +79,9 @@ class _SignupFormState extends State<SignupForm> {
             validator: _validateName,
           ),
           TextFormField(
+            style: TextStyle(
+              color: Colors.white,
+            ),
             decoration: InputDecoration(
               labelText: '密码',
               hintText: '输入注册用户密码',
