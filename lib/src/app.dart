@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:w_store_flutter/src/add/add.dart';
 import 'package:w_store_flutter/src/home/home.dart';
 import 'package:w_store_flutter/src/profile/profile.dart';
-import 'package:w_store_flutter/src/providers/current_page.dart';
-import 'package:w_store_flutter/src/widgets/app_bottom_navigation_bar.dart';
+import 'package:w_store_flutter/src/app/providers/current_page.dart';
+import 'package:w_store_flutter/src/app/widgets/app_bottom_navigation_bar.dart';
 
 class App extends StatefulWidget {
   @override

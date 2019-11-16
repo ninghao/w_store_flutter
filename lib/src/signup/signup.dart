@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:w_store_flutter/src/signup/widgets/signup_form.dart';
-import 'package:w_store_flutter/src/widgets/app_logo.dart';
+import 'package:w_store_flutter/src/app/widgets/app_logo.dart';
 
 class Signup extends StatefulWidget {
   @override

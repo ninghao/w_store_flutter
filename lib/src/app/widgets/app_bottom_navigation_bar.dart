@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:w_store_flutter/src/providers/current_page.dart';
+import 'package:w_store_flutter/src/app/providers/current_page.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   @override
