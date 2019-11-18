@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:w_store_flutter/src/signup/models/signup_model.dart';
 
@@ -10,5 +12,10 @@ class SignupService {
 
     print(response.body);
     print(response.statusCode);
+
+    final responseBody = json.decode(response.body);
+
+    print(responseBody);
+    print(responseBody['name']);
   }
 }
