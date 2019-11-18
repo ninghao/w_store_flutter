@@ -14,13 +14,26 @@ class _SignupFormState extends State<SignupForm> {
   bool _autovalidate = false;
   SignupService _signupService;
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
 
-      _signupService.signup(_formData);
+      try {
+        final user = await _signupService.signup(_formData);
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text('成功注册用户：${user.name}'),
+          ),
+        );
+      } catch (error) {
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+          ),
+        );
+      }
     } else {
       setState(() {
         _autovalidate = true;
