@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:w_store_flutter/src/signup/models/signup_model.dart';
+import 'package:w_store_flutter/src/signup/providers/signup_service.dart';
 
 class SignupForm extends StatefulWidget {
   @override
@@ -11,16 +12,7 @@ class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
   SignupModel _formData = SignupModel();
   bool _autovalidate = false;
-
-  signup() async {
-    final response = await http.post('http://192.168.31.127:3000/users', body: {
-      'name': _formData.name,
-      'password': _formData.password,
-    });
-
-    print(response.body);
-    print(response.statusCode);
-  }
+  SignupService _signupService;
 
   void _submitForm() {
     if (_formKey.currentState.validate()) {
@@ -28,7 +20,7 @@ class _SignupFormState extends State<SignupForm> {
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
 
-      signup();
+      _signupService.signup(_formData);
     } else {
       setState(() {
         _autovalidate = true;
@@ -54,6 +46,8 @@ class _SignupFormState extends State<SignupForm> {
 
   @override
   Widget build(BuildContext context) {
+    _signupService = Provider.of<SignupService>(context);
+
     return Form(
       key: _formKey,
       child: Column(
