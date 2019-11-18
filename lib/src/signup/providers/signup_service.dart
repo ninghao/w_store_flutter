@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:w_store_flutter/src/app/models/exception_response_model.dart';
+import 'package:w_store_flutter/src/app/models/user_model.dart';
 import 'package:w_store_flutter/src/signup/models/signup_model.dart';
 
 class SignupService {
@@ -17,5 +19,17 @@ class SignupService {
 
     print(responseBody);
     print(responseBody['name']);
+
+    switch (response.statusCode) {
+      case 201:
+        final user = UserModel.fromJson(responseBody);
+        print('User: ${user.name}');
+        break;
+      case 400:
+        final exceptionResponse = ExceptionResponseModel.fromJson(responseBody);
+        print('Exception: ${exceptionResponse.message}');
+        break;
+      default:
+    }
   }
 }
