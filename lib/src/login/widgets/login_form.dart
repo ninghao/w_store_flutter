@@ -20,7 +20,7 @@ class _LoginFormState extends State<LoginForm> {
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
 
-      _authService.login();
+      _authService.login(_formData);
     } else {
       setState(() {
         _autovalidate = true;
