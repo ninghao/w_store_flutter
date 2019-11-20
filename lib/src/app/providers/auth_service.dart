@@ -14,6 +14,13 @@ class AuthService {
     _currentUserController.close();
   }
 
+  void logout() {
+    isLoggedIn = false;
+    _currentUserController.sink.add(
+      UserModel(name: 'guest'),
+    );
+  }
+
   Future<UserModel> login(LoginModel data) async {
     final response =
         await http.post('http://192.168.31.127:3000/auth/login', body: {

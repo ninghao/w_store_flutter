@@ -37,6 +37,21 @@ class _ProfileState extends State<Profile> {
                     _currentUser.name,
                     style: Theme.of(context).textTheme.title,
                   ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      '退出登录',
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    splashColor: Colors.white12,
+                    elevation: 0.0,
+                    onPressed: _authService.logout,
+                  ),
                 ],
               ),
             ),
