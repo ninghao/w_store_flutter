@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:w_store_flutter/src/app/providers/auth_service.dart';
+import 'package:w_store_flutter/src/login/models/login_model.dart';
 import 'package:w_store_flutter/src/signup/models/signup_model.dart';
 import 'package:w_store_flutter/src/signup/providers/signup_service.dart';
 
@@ -13,6 +15,7 @@ class _SignupFormState extends State<SignupForm> {
   SignupModel _formData = SignupModel();
   bool _autovalidate = false;
   SignupService _signupService;
+  AuthService _authService;
 
   void _submitForm() async {
     if (_formKey.currentState.validate()) {
@@ -22,6 +25,15 @@ class _SignupFormState extends State<SignupForm> {
 
       try {
         final user = await _signupService.signup(_formData);
+        _authService.login(
+          LoginModel(
+            name: _formData.name,
+            password: _formData.password,
+          ),
+        );
+
+        Navigator.pop(context);
+
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text('成功注册用户：${user.name}'),
@@ -60,6 +72,7 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     _signupService = Provider.of<SignupService>(context);
+    _authService = Provider.of<AuthService>(context);
 
     return Form(
       key: _formKey,

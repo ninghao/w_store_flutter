@@ -19,41 +19,41 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'w.store',
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/signup': (context) => Signup(),
-      },
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        accentColor: Colors.black87,
-        appBarTheme: AppBarTheme(
-          elevation: 0.0,
-          color: Colors.white,
-          brightness: Brightness.light,
-          textTheme: TextTheme(
-            title: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
-              fontWeight: FontWeight.w500,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CurrentPage>(
+          builder: (context) => CurrentPage(),
+        ),
+        Provider<AuthService>(
+          builder: (context) => authService,
+        ),
+        StreamProvider<UserModel>(
+          builder: (context) => authService.currentUser,
+        ),
+      ],
+      child: MaterialApp(
+        title: 'w.store',
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/signup': (context) => Signup(),
+        },
+        theme: ThemeData(
+          primaryColor: Colors.black,
+          accentColor: Colors.black87,
+          appBarTheme: AppBarTheme(
+            elevation: 0.0,
+            color: Colors.white,
+            brightness: Brightness.light,
+            textTheme: TextTheme(
+              title: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<CurrentPage>(
-            builder: (context) => CurrentPage(),
-          ),
-          Provider<AuthService>(
-            builder: (context) => authService,
-          ),
-          StreamProvider<UserModel>(
-            builder: (context) => authService.currentUser,
-          ),
-        ],
-        child: Scaffold(
+        home: Scaffold(
           body: Consumer<CurrentPage>(
             builder: (context, currentPage, child) => IndexedStack(
               index: currentPage.index,
