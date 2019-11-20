@@ -161,7 +161,9 @@ class _SignupFormState extends State<SignupForm> {
                   color: Colors.white70,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               padding: EdgeInsets.all(12.0),
             ),
           ),

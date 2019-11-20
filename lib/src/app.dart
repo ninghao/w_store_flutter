@@ -7,6 +7,7 @@ import 'package:w_store_flutter/src/home/home.dart';
 import 'package:w_store_flutter/src/profile/profile.dart';
 import 'package:w_store_flutter/src/app/providers/current_page.dart';
 import 'package:w_store_flutter/src/app/widgets/app_bottom_navigation_bar.dart';
+import 'package:w_store_flutter/src/signup/signup.dart';
 
 class App extends StatefulWidget {
   @override
@@ -21,6 +22,9 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'w.store',
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/signup': (context) => Signup(),
+      },
       theme: ThemeData(
         primaryColor: Colors.black,
         accentColor: Colors.black87,

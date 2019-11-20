@@ -106,7 +106,9 @@ class _LoginFormState extends State<LoginForm> {
                   color: Colors.black54,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup');
+              },
               padding: EdgeInsets.all(12.0),
             ),
           ),
