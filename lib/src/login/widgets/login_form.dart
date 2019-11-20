@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:w_store_flutter/src/app/providers/auth_service.dart';
 import 'package:w_store_flutter/src/login/models/login_model.dart';
 
 class LoginForm extends StatefulWidget {
@@ -10,12 +12,15 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   LoginModel _formData = LoginModel();
   bool _autovalidate = false;
+  AuthService _authService;
 
   void _submitForm() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
+
+      _authService.login();
     } else {
       setState(() {
         _autovalidate = true;
@@ -41,6 +46,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    _authService = Provider.of<AuthService>(context);
+
     return Form(
       key: _formKey,
       child: Column(

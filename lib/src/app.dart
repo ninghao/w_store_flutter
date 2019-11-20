@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:w_store_flutter/src/add/add.dart';
+import 'package:w_store_flutter/src/app/providers/auth_service.dart';
 import 'package:w_store_flutter/src/home/home.dart';
 import 'package:w_store_flutter/src/profile/profile.dart';
 import 'package:w_store_flutter/src/app/providers/current_page.dart';
@@ -33,8 +34,15 @@ class _AppState extends State<App> {
           ),
         ),
       ),
-      home: ChangeNotifierProvider<CurrentPage>(
-        builder: (context) => CurrentPage(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CurrentPage>(
+            builder: (context) => CurrentPage(),
+          ),
+          Provider<AuthService>(
+            builder: (context) => AuthService(),
+          ),
+        ],
         child: Scaffold(
           body: Consumer<CurrentPage>(
             builder: (context, currentPage, child) => IndexedStack(
