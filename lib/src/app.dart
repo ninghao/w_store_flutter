@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:w_store_flutter/src/add/add.dart';
+import 'package:w_store_flutter/src/app/models/user_model.dart';
 import 'package:w_store_flutter/src/app/providers/auth_service.dart';
 import 'package:w_store_flutter/src/home/home.dart';
 import 'package:w_store_flutter/src/profile/profile.dart';
@@ -13,6 +14,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  final authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +43,10 @@ class _AppState extends State<App> {
             builder: (context) => CurrentPage(),
           ),
           Provider<AuthService>(
-            builder: (context) => AuthService(),
+            builder: (context) => authService,
+          ),
+          StreamProvider<UserModel>(
+            builder: (context) => authService.currentUser,
           ),
         ],
         child: Scaffold(
