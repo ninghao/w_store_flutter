@@ -14,13 +14,21 @@ class _LoginFormState extends State<LoginForm> {
   bool _autovalidate = false;
   AuthService _authService;
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print('Name: ${_formData.name}');
       print('Password: ${_formData.password}');
 
-      _authService.login(_formData);
+      try {
+        await _authService.login(_formData);
+      } catch (error) {
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+          ),
+        );
+      }
     } else {
       setState(() {
         _autovalidate = true;

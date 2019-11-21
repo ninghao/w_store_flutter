@@ -22,36 +22,29 @@ class AuthService {
   }
 
   Future<UserModel> login(LoginModel data) async {
-    final response =
-        await http.post('http://192.168.31.127:3000/auth/login', body: {
-      'name': data.name,
-      'password': data.password,
-    });
+    http.Response response;
 
-    print(response.body);
-    print(response.statusCode);
+    try {
+      response =
+          await http.post('http://192.168.31.127:3000/auth/login', body: {
+        'name': data.name,
+        'password': data.password,
+      });
+    } catch (e) {
+      throw ('无法连接服务。');
+    }
 
     final responseBody = json.decode(response.body);
 
-    print(responseBody);
-    print(responseBody['name']);
-
-    switch (response.statusCode) {
-      // case 201:
-      //   final user = UserModel.fromJson(responseBody);
-      //   print('User: ${user.name}');
-      //   break;
-      case 400:
-        final exceptionResponse = ExceptionResponseModel.fromJson(responseBody);
-        print('Exception: ${exceptionResponse.message}');
-        throw ('${exceptionResponse.message}');
-        break;
-      default:
-        final user = UserModel.fromJson(responseBody);
-        _currentUserController.sink.add(user);
-        isLoggedIn = true;
-
-        return user;
+    if (response.statusCode != 201) {
+      final exceptionResponse = ExceptionResponseModel.fromJson(responseBody);
+      throw ('${exceptionResponse.message}');
     }
+
+    final user = UserModel.fromJson(responseBody);
+    _currentUserController.sink.add(user);
+    isLoggedIn = true;
+
+    return user;
   }
 }
