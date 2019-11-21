@@ -7,31 +7,27 @@ import 'package:w_store_flutter/src/signup/models/signup_model.dart';
 
 class SignupService {
   Future<UserModel> signup(SignupModel data) async {
-    final response = await http.post('http://192.168.31.127:3000/users', body: {
-      'name': data.name,
-      'password': data.password,
-    });
+    http.Response response;
 
-    print(response.body);
-    print(response.statusCode);
+    try {
+      response = await http.post('http://192.168.31.127:3000/users', body: {
+        'name': data.name,
+        'password': data.password,
+      });
+    } catch (e) {
+      throw ('无法连接服务。');
+    }
 
     final responseBody = json.decode(response.body);
 
-    print(responseBody);
-    print(responseBody['name']);
-
-    switch (response.statusCode) {
-      // case 201:
-      //   final user = UserModel.fromJson(responseBody);
-      //   print('User: ${user.name}');
-      //   break;
-      case 400:
-        final exceptionResponse = ExceptionResponseModel.fromJson(responseBody);
-        print('Exception: ${exceptionResponse.message}');
-        throw ('${exceptionResponse.message}');
-        break;
-      default:
-        return UserModel.fromJson(responseBody);
+    if (response.statusCode != 201) {
+      final exceptionResponse = ExceptionResponseModel.fromJson(responseBody);
+      print('Exception: ${exceptionResponse.message}');
+      throw ('${exceptionResponse.message}');
     }
+
+    final user = UserModel.fromJson(responseBody);
+
+    return user;
   }
 }
