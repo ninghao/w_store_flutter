@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:w_store_flutter/src/app/providers/app_key.dart';
 import 'package:w_store_flutter/src/app/providers/auth_service.dart';
 import 'package:w_store_flutter/src/login/models/login_model.dart';
 
@@ -13,6 +14,7 @@ class _LoginFormState extends State<LoginForm> {
   LoginModel _formData = LoginModel();
   bool _autovalidate = false;
   AuthService _authService;
+  AppKey _appKey;
 
   void _submitForm() async {
     if (_formKey.currentState.validate()) {
@@ -22,6 +24,12 @@ class _LoginFormState extends State<LoginForm> {
 
       try {
         await _authService.login(_formData);
+
+        _appKey.scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text('成功登录：${_formData.name}'),
+          ),
+        );
       } catch (error) {
         Scaffold.of(context).showSnackBar(
           SnackBar(
@@ -55,6 +63,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     _authService = Provider.of<AuthService>(context);
+    _appKey = Provider.of<AppKey>(context);
 
     return Form(
       key: _formKey,
